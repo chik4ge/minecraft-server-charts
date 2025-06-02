@@ -1,6 +1,6 @@
 {{- $proxyFullname := include "proxy.fullname" . }}
 {{- range .Values.minecraftProxy.extraPorts }}
-{{- if default "" .ingress.enabled }}
+{{- if and .ingress (default "" .ingress.enabled) }}
 {{- $servicePort := .service.port }}
 {{- $serviceName := printf "%s-%s" $proxyFullname .name }}
 ---
@@ -14,7 +14,7 @@ metadata:
   {{- end }}
   labels:
     app: {{ $serviceName }}
-    chart: {{ template "minecraft.fullname" . }}
+    chart: "{{ include "chart.fullname" $ }}"
     release: "{{ $.Release.Name }}"
     heritage: "{{ $.Release.Service }}"
 spec:
