@@ -19,6 +19,9 @@ spec:
   {{- if .Values.minecraftProxy.rcon.loadBalancerIP }}
   loadBalancerIP: {{ .Values.minecraftProxy.rcon.loadBalancerIP }}
   {{- end }}
+  {{- if .Values.minecraftProxy.rcon.loadBalancerClass }}
+  loadBalancerClass: {{ .Values.minecraftProxy.rcon.loadBalancerClass }}
+  {{- end }}
   {{- if .Values.minecraftProxy.rcon.loadBalancerSourceRanges }}
   loadBalancerSourceRanges:
 {{ toYaml .Values.minecraftProxy.rcon.loadBalancerSourceRanges | indent 4 }}
